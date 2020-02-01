@@ -8,8 +8,10 @@
 
 import SwiftUI
 
+private class ColorClass {}
+
 extension Color {
     init(_ colorAsset: ColorAsset) {
-        self = Color(colorAsset.color)
+        self = Color(colorAsset.name, bundle: Bundle(for: ColorClass.self))
     }
 }

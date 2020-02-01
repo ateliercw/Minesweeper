@@ -47,6 +47,7 @@
 		2680F31A238D6E7C00E6764D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2680F319238D6E7C00E6764D /* Assets.xcassets */; };
 		2680F31D238D6E7C00E6764D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2680F31C238D6E7C00E6764D /* Preview Assets.xcassets */; };
 		2680F320238D6E7C00E6764D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2680F31E238D6E7C00E6764D /* Main.storyboard */; };
+		26A328EF2392B031004E5550 /* Image+imageAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A328EE2392B031004E5550 /* Image+imageAsset.swift */; };
 		26B40D342391EE6B00E6C97D /* Minefield+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B40D332391EE6B00E6C97D /* Minefield+Configuration.swift */; };
 		26C8122A238F196200592D9D /* GameState+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C81229238F196200592D9D /* GameState+Status.swift */; };
 		26C8122C238F1BBE00592D9D /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8122B238F1BBE00592D9D /* GameBoard.swift */; };
@@ -97,6 +98,7 @@
 		2680F31F238D6E7C00E6764D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2680F321238D6E7C00E6764D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2680F322238D6E7C00E6764D /* Minesweeper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Minesweeper.entitlements; sourceTree = "<group>"; };
+		26A328EE2392B031004E5550 /* Image+imageAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+imageAsset.swift"; sourceTree = "<group>"; };
 		26B40D332391EE6B00E6C97D /* Minefield+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Minefield+Configuration.swift"; sourceTree = "<group>"; };
 		26C81229238F196200592D9D /* GameState+Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameState+Status.swift"; sourceTree = "<group>"; };
 		26C8122B238F1BBE00592D9D /* GameBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				263CEFC823901F5800FB8FF8 /* Color+colorAsset.swift */,
+				26A328EE2392B031004E5550 /* Image+imageAsset.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -307,7 +310,6 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Minesweeper/Generated/Asset.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -342,6 +344,7 @@
 				26C81234238F1E3100592D9D /* MineButton.swift in Sources */,
 				2614BFA4238D6EC600F7E25E /* PlayedState.swift in Sources */,
 				26C8122C238F1BBE00592D9D /* GameBoard.swift in Sources */,
+				26A328EF2392B031004E5550 /* Image+imageAsset.swift in Sources */,
 				26C81232238F1CA900592D9D /* MinesweeperHeader.swift in Sources */,
 				2614BFA8238D6EC800F7E25E /* MainView.swift in Sources */,
 				2680F316238D6E7B00E6764D /* AppDelegate.swift in Sources */,

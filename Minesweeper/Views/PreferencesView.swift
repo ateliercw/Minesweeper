@@ -13,10 +13,11 @@ struct PreferencesView: View {
     let dismissAction: () -> Void
 
     var body: some View {
-        VStack {
+        Form {
             Button(action: setBeginner) { Text("Beginner") }
             Button(action: setIntermediate) { Text("Intermediate") }
             Button(action: setExpert) { Text("Expert") }
+                .padding(.bottom)
             Button(action: dismissAction) { Text("Cancel") }
         }
         .padding()

@@ -65,9 +65,9 @@ class GameState: ObservableObject {
         guard let gridPoint = minefield?[point], gridPoint.info == .empty  else { return }
         let surrounding = Set(minefield?.pointsSurrounding(point) ?? [])
             .subtracting(alreadyChecked)
-        for point in surrounding {
-            guard minefield?[point].state != .flagged else { continue }
-            revealSurrounding(point: point, alreadyChecked: surrounding.union(alreadyChecked).union([point]))
+        for point in surrounding where minefield?[point].state != .flagged {
+            let alreadyChecked = alreadyChecked.union(surrounding.union(alreadyChecked).union([point]))
+            revealSurrounding(point: point, alreadyChecked: alreadyChecked)
         }
     }
 

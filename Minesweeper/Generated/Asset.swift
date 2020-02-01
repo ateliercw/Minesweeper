@@ -19,29 +19,24 @@
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
   internal static let appBackground = ColorAsset(name: "AppBackground")
-  internal static let outline = ColorAsset(name: "Outline")
-  internal static let selectedButton = ColorAsset(name: "SelectedButton")
-  internal enum Solarized {
+  internal static let label = ColorAsset(name: "Label")
+  internal enum Mine {
 
-    internal static let base0 = ColorAsset(name: "Solarized/Base0")
-    internal static let base00 = ColorAsset(name: "Solarized/Base00")
-    internal static let base01 = ColorAsset(name: "Solarized/Base01")
-    internal static let base02 = ColorAsset(name: "Solarized/Base02")
-    internal static let base03 = ColorAsset(name: "Solarized/Base03")
-    internal static let base1 = ColorAsset(name: "Solarized/Base1")
-    internal static let base2 = ColorAsset(name: "Solarized/Base2")
-    internal static let base3 = ColorAsset(name: "Solarized/Base3")
-    internal static let blue = ColorAsset(name: "Solarized/Blue")
-    internal static let cyan = ColorAsset(name: "Solarized/Cyan")
-    internal static let green = ColorAsset(name: "Solarized/Green")
-    internal static let magenta = ColorAsset(name: "Solarized/Magenta")
-    internal static let orange = ColorAsset(name: "Solarized/Orange")
-    internal static let red = ColorAsset(name: "Solarized/Red")
-    internal static let violet = ColorAsset(name: "Solarized/Violet")
-    internal static let yellow = ColorAsset(name: "Solarized/Yellow")
+    internal enum Colors {
+      internal static let mine1 = ColorAsset(name: "Mine/Colors/Mine1")
+      internal static let mine2 = ColorAsset(name: "Mine/Colors/Mine2")
+      internal static let mine3 = ColorAsset(name: "Mine/Colors/Mine3")
+      internal static let mine4 = ColorAsset(name: "Mine/Colors/Mine4")
+      internal static let mine5 = ColorAsset(name: "Mine/Colors/Mine5")
+      internal static let mine6 = ColorAsset(name: "Mine/Colors/Mine6")
+      internal static let mine7 = ColorAsset(name: "Mine/Colors/Mine7")
+      internal static let mine8 = ColorAsset(name: "Mine/Colors/Mine8")
+    }
+    internal static let revealed = ColorAsset(name: "Mine/Revealed")
+    internal static let unrevealed = ColorAsset(name: "Mine/Unrevealed")
   }
-  internal static let textColor = ColorAsset(name: "TextColor")
-  internal static let unselectedButton = ColorAsset(name: "UnselectedButton")
+  internal static let outline = ColorAsset(name: "Outline")
+  internal static let unrevealed = ImageAsset(name: "Unrevealed")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

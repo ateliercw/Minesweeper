@@ -16,13 +16,23 @@ struct MinesweeperHeader: View {
     var body: some View {
         HStack {
             HStack {
-                Text("\(remainingMines)")
+                VStack(alignment: .leading) {
+                    Text("Mines")
+                        .font(Font.caption)
+                        .foregroundColor(Color(NSColor.secondaryLabelColor))
+                    Text("\(remainingMines)")
+                }
                 Spacer()
             }
             Button(action: resetAction) { Text("🔄") }
             HStack {
                 Spacer()
-                Text("\(elapsedTime)")
+                VStack(alignment: .trailing) {
+                    Text("Time")
+                    .font(Font.caption)
+                    .foregroundColor(Color(NSColor.secondaryLabelColor))
+                    Text("\(elapsedTime)")
+                }
             }
         }
         .buttonStyle(PlainButtonStyle())

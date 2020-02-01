@@ -14,8 +14,9 @@ struct MainView: View {
     var body: some View {
         VStack {
             MinesweeperHeader(remainingMines: state.configuration.mineCount - state.flaggedCount,
-                              elapsedTime: state.elapsed,
-                              resetAction: state.reset)
+                              elapsedTime: state.elapsed) {
+                                withAnimation { self.state.reset() }
+            }
             Spacer()
             GameBoard(state: state)
         }

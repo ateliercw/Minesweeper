@@ -40,7 +40,7 @@ private struct LabelStack: View {
                     .font(Font.caption)
                     .foregroundColor(Color(Asset.secondaryLabel))
                 detail
-                    .font(Font.system(.body).monospacedDigit())
+                    .font(Font.system(.body).monospacedDigit()).animation(.none)
             }
             if alignment == .leading { Spacer() }
         }

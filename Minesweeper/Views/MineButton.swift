@@ -30,28 +30,31 @@ struct MineButton: View {
         Button(action: revealOrProbe) {
             Text(gridState.label(status: status)).bold()
         }
-        .buttonStyle(MineButtonConfiguration(gridState: gridState))
+        .buttonStyle(MineButtonConfiguration(gridState: gridState, status: status))
         .highPriorityGesture(TapGesture().modifiers(.option).onEnded(flag))
     }
 }
 
 struct MineButtonConfiguration: ButtonStyle {
     let gridState: GridState
-
-    func opacity(configuration: Self.Configuration) -> Double {
-        configuration.isPressed ? 0.3 : 1
-    }
+    let status: GameState.Status
 
     func makeBody(configuration: Self.Configuration) -> some View {
         ZStack {
-            if gridState.state != .revealed {
-                Overlay()
+            if status.isPlayable || gridState.state == .revealed {
+                configuration.label.animation(.none).transition(.identity)
             }
-            configuration.label
+            if gridState.state != .revealed {
+                Overlay().transition(.asymmetric(insertion: .identity, removal: .opacity))
+            }
+            if (!status.isPlayable || gridState.state == .flagged) && gridState.state != .revealed {
+                configuration.label.animation(.none).transition(.opacity)
+            }
         }
         .foregroundColor(gridState.textColor)
         .frame(width: 30, height: 30)
-        .background(gridState.backgroundColor.opacity(opacity(configuration: configuration)))
+        .opacity(configuration.isPressed ? 0.3 : 1)
+        .background(Color(Asset.Mine.revealed))
     }
 }
 
@@ -70,6 +73,8 @@ struct Overlay: View {
     var body: some View {
         GeometryReader { [gradientWidth, lightGradient, darkGradient, gradientOpacity] proxy in
             ZStack {
+                Color(Asset.Mine.unrevealed)
+                    .frame(width: proxy.size.width, height: proxy.size.height)
                 LinearGradient(gradient: lightGradient,
                                startPoint: .top,
                                endPoint: .bottom)
@@ -100,12 +105,6 @@ struct Overlay: View {
 }
 
 private extension GridState {
-    var backgroundColor: Color {
-        state == .revealed ?
-            Color(Asset.Mine.revealed) :
-            Color(Asset.Mine.unrevealed)
-    }
-
     var textColor: Color {
         let color: ColorAsset
         switch self.info {

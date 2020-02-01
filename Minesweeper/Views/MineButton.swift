@@ -15,16 +15,19 @@ struct MineButton: View {
     let flag: () -> Void
     let probe: () -> Void
 
-    private var revealAndProbe: () -> Void {
-        let action = { [reveal, probe] in
-            reveal()
-            probe()
+    private var revealOrProbe: () -> Void {
+        let action = { [gridState, reveal, probe] in
+            if gridState.state == .revealed {
+                probe()
+            } else {
+                reveal()
+            }
         }
         return action
     }
 
     var body: some View {
-        Button(action: revealAndProbe) {
+        Button(action: revealOrProbe) {
             Text(gridState.label(status: status)).bold()
         }
         .buttonStyle(MineButtonConfiguration(gridState: gridState))
@@ -42,14 +45,57 @@ struct MineButtonConfiguration: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         ZStack {
             if gridState.state != .revealed {
-                Image(Asset.unrevealed).blendMode(.multiply)
+                Overlay()
             }
             configuration.label
         }
         .foregroundColor(gridState.textColor)
         .frame(width: 30, height: 30)
-        .background(gridState.backgroundColor)
-        .opacity(opacity(configuration: configuration))
+        .background(gridState.backgroundColor.opacity(opacity(configuration: configuration)))
+    }
+}
+
+struct Overlay: View {
+    private let gradientWidth: CGFloat = 2
+    private let gradientOpacity: Double = 0.3
+    private let lightGradient = Gradient(colors: [
+        Color(Asset.Gradient.light),
+        Color(Asset.Gradient.light).opacity(0)
+    ])
+    private let darkGradient = Gradient(colors: [
+        Color(Asset.Gradient.dark),
+        Color(Asset.Gradient.dark).opacity(0)
+    ])
+
+    var body: some View {
+        GeometryReader { [gradientWidth, lightGradient, darkGradient, gradientOpacity] proxy in
+            ZStack {
+                LinearGradient(gradient: lightGradient,
+                               startPoint: .top,
+                               endPoint: .bottom)
+                    .frame(width: proxy.size.width, height: gradientWidth)
+                    .position(x: proxy.size.width / 2, y: gradientWidth / 2)
+                    .opacity(gradientOpacity)
+                LinearGradient(gradient: lightGradient,
+                               startPoint: .leading,
+                               endPoint: .trailing)
+                    .frame(width: gradientWidth, height: proxy.size.height)
+                    .position(x: gradientWidth / 2, y: proxy.size.height / 2)
+                    .opacity(gradientOpacity)
+                LinearGradient(gradient: darkGradient,
+                               startPoint: .bottom,
+                               endPoint: .top)
+                    .frame(width: proxy.size.width, height: gradientWidth)
+                    .position(x: proxy.size.width / 2, y: proxy.size.height - (gradientWidth / 2))
+                    .opacity(gradientOpacity)
+                LinearGradient(gradient: darkGradient,
+                               startPoint: .trailing,
+                               endPoint: .leading)
+                    .frame(width: gradientWidth, height: proxy.size.height)
+                    .position(x: proxy.size.width - (gradientWidth / 2), y: proxy.size.height / 2)
+                    .opacity(gradientOpacity)
+            }
+        }
     }
 }
 

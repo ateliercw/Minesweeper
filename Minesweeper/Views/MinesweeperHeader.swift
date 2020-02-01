@@ -15,27 +15,34 @@ struct MinesweeperHeader: View {
 
     var body: some View {
         HStack {
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Mines")
-                        .font(Font.caption)
-                        .foregroundColor(Color(NSColor.secondaryLabelColor))
-                    Text("\(remainingMines)")
-                }
-                Spacer()
-            }
+            LabelStack(alignment: .leading,
+                       caption: Text("Mines"),
+                       detail: Text("\(remainingMines)"))
             Button(action: resetAction) { Text("🔄") }
-            HStack {
-                Spacer()
-                VStack(alignment: .trailing) {
-                    Text("Time")
-                    .font(Font.caption)
-                    .foregroundColor(Color(NSColor.secondaryLabelColor))
-                    Text("\(elapsedTime)")
-                }
-            }
+            LabelStack(alignment: .trailing,
+                       caption: Text("Time"),
+                       detail: Text("\(elapsedTime)"))
         }
         .buttonStyle(PlainButtonStyle())
-        .font(Font.system(.body).monospacedDigit())
+    }
+}
+
+private struct LabelStack: View {
+    let alignment: HorizontalAlignment
+    let caption: Text
+    let detail: Text
+
+    var body: some View {
+        HStack {
+            if alignment == .trailing { Spacer() }
+            VStack(alignment: alignment) {
+                caption
+                    .font(Font.caption)
+                    .foregroundColor(Color(Asset.secondaryLabel))
+                detail
+                    .font(Font.system(.body).monospacedDigit())
+            }
+            if alignment == .leading { Spacer() }
+        }
     }
 }

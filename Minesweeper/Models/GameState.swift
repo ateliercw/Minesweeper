@@ -37,7 +37,7 @@ class GameState: ObservableObject {
         }
         guard minefield?[point].state == .unmarked else { return }
         minefield?[point].state = .revealed
-        revealSurrounding(point: point, alreadyChecked: [])
+        revealSurrounding(point: point)
     }
 
     func toggleFlag(_ point: Point) {
@@ -76,14 +76,19 @@ class GameState: ObservableObject {
         minefield = nil
     }
 
-    private func revealSurrounding(point: Point, alreadyChecked: Set<Point>) {
+    private func revealSurrounding(point: Point) {
+        var alreadyChecked = Set<Point>()
+        revealSurrounding(point: point, alreadyChecked: &alreadyChecked)
+    }
+
+    private func revealSurrounding(point: Point, alreadyChecked: inout Set<Point>) {
         minefield?[point].state = .revealed
         guard let gridPoint = minefield?[point], gridPoint.info == .empty  else { return }
         let surrounding = Set(minefield?.pointsSurrounding(point) ?? [])
             .subtracting(alreadyChecked)
         for point in surrounding where minefield?[point].state != .flagged {
-            let alreadyChecked = alreadyChecked.union(surrounding).union(alreadyChecked).union([point])
-            revealSurrounding(point: point, alreadyChecked: alreadyChecked)
+            alreadyChecked.formUnion(surrounding.union([point]))
+            revealSurrounding(point: point, alreadyChecked: &alreadyChecked)
         }
     }
 

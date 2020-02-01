@@ -9,6 +9,7 @@
 import SwiftUI
 
 private class ImageBundleClass {}
+
 extension Image {
     init(_ imageAsset: ImageAsset) {
         self = Image.init(imageAsset.name,

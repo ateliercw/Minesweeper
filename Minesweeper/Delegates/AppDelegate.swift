@@ -47,4 +47,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func showPreferences(sender: AnyObject?) {
         state.showSettings.toggle()
     }
+
+    @IBAction private
+    // swiftlint:disable:next prohibited_interface_builder
+    func resetGame(sender: AnyObject?) {
+        state.reset()
+    }
 }

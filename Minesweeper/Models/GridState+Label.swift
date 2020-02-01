@@ -19,7 +19,7 @@ extension GridState {
         case (.revealed, _, .mine): return "💥"
         case (_, .win, .mine): return "🚩"
         case (_, _, .mine): return "💣"
-        case (_, _, .count(let count)): return (count).label
+        case (_, _, .count(let count)): return count.label
         case (_, _, .empty): return ""
         }
     }

@@ -138,11 +138,11 @@
 			isa = PBXGroup;
 			children = (
 				261846A5238D2E02003FB0D0 /* GameState.swift */,
-				26B40D332391EE6B00E6C97D /* Minefield+Configuration.swift */,
 				26C81229238F196200592D9D /* GameState+Status.swift */,
-				26C8122F238F1C3100592D9D /* GridState+Label.swift */,
 				261846A7238D3E5A003FB0D0 /* GridState.swift */,
+				26C8122F238F1C3100592D9D /* GridState+Label.swift */,
 				260D5F25238C83CD00905382 /* Minefield.swift */,
+				26B40D332391EE6B00E6C97D /* Minefield+Configuration.swift */,
 				261846AB238D44AA003FB0D0 /* MineInfo.swift */,
 				261846A9238D3E69003FB0D0 /* PlayedState.swift */,
 				260D5F27238C893000905382 /* Point.swift */,

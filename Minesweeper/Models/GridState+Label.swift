@@ -11,7 +11,7 @@ import Foundation
 extension GridState {
     func label(status: GameState.Status) -> String {
         switch (state, status, info) {
-        case (.flagged, .active, _): return "🚩"
+        case (.flagged, _, _): return flaggedState(status: status)
         case (.unmarked, .active, _),
              (.unmarked, .unstarted, _): return ""
         case (.unknown, .active, _): return "?"
@@ -21,6 +21,14 @@ extension GridState {
         case (_, _, .mine): return "💣"
         case (_, _, .count(let count)): return (count).label
         case (_, _, .empty): return ""
+        }
+    }
+
+    func flaggedState(status: GameState.Status) -> String {
+        switch (status, info) {
+        case (.loss, .mine): return "🚩"
+        case (.loss, _): return "!"
+        case (_, _): return "🚩"
         }
     }
 }

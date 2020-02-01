@@ -12,13 +12,17 @@ struct GameBoard: View {
     @ObservedObject var state = GameState(width: 9, height: 9, mineCount: 10)
 
     var body: some View {
-        ForEach(0..<state.height) { [state] row in
-            HStack {
-                ForEach(0..<state.width) { col in
-                    MineButton(point: Point(x: row, y: col), state: state)
+        VStack(spacing: 1) { [state] in
+            ForEach(0..<state.height) { row in
+                HStack(spacing: 1) {
+                    ForEach(0..<state.width) { col in
+                        MineButton(point: Point(x: row, y: col), state: state)
+                    }
                 }
-            }.font(Font.body)
+            }
         }
+        .padding(1)
+        .background(Color.black)
         .disabled(state.status == .win || state.status == .loss)
     }
 }

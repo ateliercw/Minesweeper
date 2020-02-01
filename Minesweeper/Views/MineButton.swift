@@ -9,27 +9,28 @@
 import SwiftUI
 
 struct MineButton: View {
-    var label: String
-    var reveal: () -> Void
-    var flag: () -> Void
-
-    init(gridState: GridState,
-         status: GameState.Status,
-         reveal: @escaping () -> Void,
-         flag: @escaping () -> Void) {
-        self.label = gridState.label(status: status)
-        self.reveal = reveal
-        self.flag = flag
-    }
+    let gridState: GridState
+    let status: GameState.Status
+    let reveal: () -> Void
+    let flag: () -> Void
 
     var body: some View {
-        Text(label)
+        Text(gridState.label(status: status))
+            .frame(width: 30, height: 30)
+            .background(gridState.color)
             .highPriorityGesture(TapGesture()
                 .modifiers(.option)
                 .onEnded(flag))
             .gesture(TapGesture()
                 .onEnded(reveal))
-            .frame(width: 20, height: 20)
+    }
+}
+
+private extension GridState {
+    var color: Color {
+        Color(state == .revealed ?
+            NSColor.underPageBackgroundColor :
+            NSColor.controlColor)
     }
 }
 

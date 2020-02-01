@@ -22,7 +22,10 @@ struct MainView: View {
             MinesweeperHeader(remainingMines: state.mineCount - state.flaggedCount,
                               elapsedTime: state.elapsed,
                               resetAction: state.reset)
+                .padding(.bottom)
             GameBoard(state: state)
-        }.padding()
+        }
+        .padding()
+        .font(Font.body)
     }
 }

@@ -13,17 +13,21 @@ struct GameBoard: View {
 
     var body: some View {
         VStack(spacing: 1) { [state] in
-            ForEach(0..<state.height) { row in
-                HStack(spacing: 1) {
-                    ForEach(0..<state.width) { col in
-                        MineButton(point: Point(x: row, y: col), state: state)
-                    }
-                }
+            ForEach(Array(0..<state.height), id: \.self) { row in
+                Self.row(row, state: state)
             }
         }
         .padding(1)
-        .background(Color.black)
-        .disabled(state.status == .win || state.status == .loss)
+        .background(Color(Asset.outline))
+        .disabled(!state.status.isPlayable)
+    }
+
+    private static func row(_ row: Int, state: GameState) -> some View {
+        HStack(spacing: 1) {
+            ForEach(Array(0..<state.width), id: \.self) { col in
+                MineButton(point: Point(x: col, y: row), state: state)
+            }
+        }
     }
 }
 
@@ -32,8 +36,8 @@ private extension MineButton {
         self = MineButton(
             gridState: state[point],
             status: state.status,
-            reveal: { [state] in state.reveal(point) },
-            flag: { [state] in state.toggleFlag(point) }
+            reveal: { state.reveal(point) },
+            flag: { state.toggleFlag(point) }
         )
     }
 }

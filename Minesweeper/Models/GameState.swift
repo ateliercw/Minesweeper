@@ -10,12 +10,13 @@ import Foundation
 import Combine
 
 class GameState: ObservableObject {
-    @Published var width: Int
-    @Published var height: Int
-    @Published var mineCount: Int
+    @Published var width: Int { didSet { reset() } }
+    @Published var height: Int { didSet { reset() } }
+    @Published var mineCount: Int { didSet { reset() } }
     @Published var elapsed: Int
     @Published var status: Status = .active
     @Published private var minefield: Minefield?
+    @Published var showSettings: Bool = false
     private var timer: AnyCancellable?
     private var cancellales = Set<AnyCancellable>()
 

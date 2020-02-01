@@ -27,7 +27,7 @@ extension GridState {
     func flaggedState(status: GameState.Status) -> String {
         switch (status, info) {
         case (.loss, .mine): return "🚩"
-        case (.loss, _): return "!"
+        case (.loss, _): return "❌"
         case (_, _): return "🚩"
         }
     }

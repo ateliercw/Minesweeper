@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
+		26BE94BC2390000B004F5D0C /* Swiftgen */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 26BE94BD2390000B004F5D0C /* Build configuration list for PBXAggregateTarget "Swiftgen" */;
+			buildPhases = (
+				26BE94C023900017004F5D0C /* Swiftgen */,
+			);
+			dependencies = (
+			);
+			name = Swiftgen;
+			productName = Swiftgen;
+		};
 		26F0F2F1238C93F000CE1EC7 /* Swiftlint */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 26F0F2F4238C93F000CE1EC7 /* Build configuration list for PBXAggregateTarget "Swiftlint" */;
@@ -14,6 +25,7 @@
 				26F0F2F5238C93F700CE1EC7 /* Swiftlint */,
 			);
 			dependencies = (
+				263CEFC42390005300FB8FF8 /* PBXTargetDependency */,
 			);
 			name = Swiftlint;
 			productName = Swiftlint;
@@ -28,6 +40,9 @@
 		2614BFA6238D6EC600F7E25E /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260D5F27238C893000905382 /* Point.swift */; };
 		2614BFA7238D6EC600F7E25E /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261846A5238D2E02003FB0D0 /* GameState.swift */; };
 		2614BFA8238D6EC800F7E25E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261846D7238D6335003FB0D0 /* MainView.swift */; };
+		263CEFC62390008000FB8FF8 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263CEFC52390008000FB8FF8 /* Asset.swift */; };
+		263CEFC923901F5800FB8FF8 /* Color+colorAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263CEFC823901F5800FB8FF8 /* Color+colorAsset.swift */; };
+		2649905823907AE000D27453 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2649905723907AE000D27453 /* PreferencesView.swift */; };
 		2680F316238D6E7B00E6764D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2680F315238D6E7B00E6764D /* AppDelegate.swift */; };
 		2680F31A238D6E7C00E6764D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2680F319238D6E7C00E6764D /* Assets.xcassets */; };
 		2680F31D238D6E7C00E6764D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2680F31C238D6E7C00E6764D /* Preview Assets.xcassets */; };
@@ -47,6 +62,20 @@
 			remoteGlobalIDString = 26F0F2F1238C93F000CE1EC7;
 			remoteInfo = Swiftlint;
 		};
+		263CEFC12390004F00FB8FF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 260D5F02238C835700905382 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26BE94BC2390000B004F5D0C;
+			remoteInfo = Swiftgen;
+		};
+		263CEFC32390005300FB8FF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 260D5F02238C835700905382 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26BE94BC2390000B004F5D0C;
+			remoteInfo = Swiftgen;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +86,9 @@
 		261846A9238D3E69003FB0D0 /* PlayedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayedState.swift; sourceTree = "<group>"; };
 		261846AB238D44AA003FB0D0 /* MineInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineInfo.swift; sourceTree = "<group>"; };
 		261846D7238D6335003FB0D0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		263CEFC52390008000FB8FF8 /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
+		263CEFC823901F5800FB8FF8 /* Color+colorAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+colorAsset.swift"; sourceTree = "<group>"; };
+		2649905723907AE000D27453 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		2680F313238D6E7B00E6764D /* Minesweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minesweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2680F315238D6E7B00E6764D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2680F319238D6E7C00E6764D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -132,6 +164,14 @@
 			path = Content;
 			sourceTree = "<group>";
 		};
+		263CEFC723901F4600FB8FF8 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				263CEFC823901F5800FB8FF8 /* Color+colorAsset.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		267E704E238D63B7003C683D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +179,7 @@
 				261846D7238D6335003FB0D0 /* MainView.swift */,
 				26C81233238F1E3100592D9D /* MineButton.swift */,
 				26C81231238F1CA900592D9D /* MinesweeperHeader.swift */,
+				2649905723907AE000D27453 /* PreferencesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -146,6 +187,8 @@
 		2680F314238D6E7B00E6764D /* Minesweeper */ = {
 			isa = PBXGroup;
 			children = (
+				263CEFC723901F4600FB8FF8 /* Categories */,
+				26BE94B9238FFFC6004F5D0C /* Generated */,
 				260D5F23238C837100905382 /* Models */,
 				267E704E238D63B7003C683D /* Views */,
 				2614BFA0238D6EA000F7E25E /* Delegates */,
@@ -163,6 +206,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		26BE94B9238FFFC6004F5D0C /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				263CEFC52390008000FB8FF8 /* Asset.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -177,6 +228,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				263CEFC22390004F00FB8FF8 /* PBXTargetDependency */,
 				2614BFAA238D6ED400F7E25E /* PBXTargetDependency */,
 			);
 			name = Minesweeper;
@@ -195,6 +247,9 @@
 				ORGANIZATIONNAME = "Atelier Clockwork";
 				TargetAttributes = {
 					2680F312238D6E7B00E6764D = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					26BE94BC2390000B004F5D0C = {
 						CreatedOnToolsVersion = 11.2.1;
 					};
 					26F0F2F1238C93F000CE1EC7 = {
@@ -217,6 +272,7 @@
 			targets = (
 				2680F312238D6E7B00E6764D /* Minesweeper */,
 				26F0F2F1238C93F000CE1EC7 /* Swiftlint */,
+				26BE94BC2390000B004F5D0C /* Swiftgen */,
 			);
 		};
 /* End PBXProject section */
@@ -235,6 +291,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		26BE94C023900017004F5D0C /* Swiftgen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftgen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Minesweeper/Generated/Asset.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftgen >/dev/null; then\n  swiftgen\nelse\n  echo \"warning: Swiftgen not installed, download from https://github.com/SwiftGen/SwiftGen\"\nfi\n";
+		};
 		26F0F2F5238C93F700CE1EC7 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -268,9 +343,12 @@
 				2614BFA8238D6EC800F7E25E /* MainView.swift in Sources */,
 				2680F316238D6E7B00E6764D /* AppDelegate.swift in Sources */,
 				2614BFA6238D6EC600F7E25E /* Point.swift in Sources */,
+				263CEFC62390008000FB8FF8 /* Asset.swift in Sources */,
 				26C8122A238F196200592D9D /* GameState+Status.swift in Sources */,
+				263CEFC923901F5800FB8FF8 /* Color+colorAsset.swift in Sources */,
 				2614BFA2238D6EC600F7E25E /* Minefield.swift in Sources */,
 				2614BFA5238D6EC600F7E25E /* GridState.swift in Sources */,
+				2649905823907AE000D27453 /* PreferencesView.swift in Sources */,
 				26C81230238F1C3100592D9D /* GridState+Label.swift in Sources */,
 				2614BFA3238D6EC600F7E25E /* MineInfo.swift in Sources */,
 			);
@@ -283,6 +361,16 @@
 			isa = PBXTargetDependency;
 			target = 26F0F2F1238C93F000CE1EC7 /* Swiftlint */;
 			targetProxy = 2614BFA9238D6ED400F7E25E /* PBXContainerItemProxy */;
+		};
+		263CEFC22390004F00FB8FF8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26BE94BC2390000B004F5D0C /* Swiftgen */;
+			targetProxy = 263CEFC12390004F00FB8FF8 /* PBXContainerItemProxy */;
+		};
+		263CEFC42390005300FB8FF8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26BE94BC2390000B004F5D0C /* Swiftgen */;
+			targetProxy = 263CEFC32390005300FB8FF8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -462,6 +550,24 @@
 			};
 			name = Release;
 		};
+		26BE94BE2390000B004F5D0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8NQ6VJNLCQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		26BE94BF2390000B004F5D0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8NQ6VJNLCQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		26F0F2F2238C93F000CE1EC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -497,6 +603,15 @@
 			buildConfigurations = (
 				2680F324238D6E7C00E6764D /* Debug */,
 				2680F325238D6E7C00E6764D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26BE94BD2390000B004F5D0C /* Build configuration list for PBXAggregateTarget "Swiftgen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26BE94BE2390000B004F5D0C /* Debug */,
+				26BE94BF2390000B004F5D0C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

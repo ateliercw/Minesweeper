@@ -14,5 +14,12 @@ extension GameState {
         case active
         case win
         case loss
+
+        var isPlayable: Bool {
+            switch self {
+            case .unstarted, .active: return true
+            case .win, .loss: return false
+            }
+        }
     }
 }

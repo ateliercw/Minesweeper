@@ -1,0 +1,6 @@
+xcassets:
+  inputs:
+    - Minesweeper/Content/Assets.xcassets
+  outputs:
+    - templateName: swift4
+      output: Minesweeper/Generated/Asset.swift

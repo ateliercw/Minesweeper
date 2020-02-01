@@ -36,7 +36,7 @@ struct ContentView: View {
                 ForEach(0..<state.width) { col in
                     MineButton(label: state.label(Point(x: col, y: row)),
                                reveal: { state.reveal(Point(x: col, y: row)) },
-                               flag: { state.flag(Point(x: col, y: row)) })
+                               flag: { state.toggleFlag(Point(x: col, y: row)) })
                 }
             }.font(Font.body)
         }

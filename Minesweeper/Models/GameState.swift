@@ -52,11 +52,18 @@ class GameState: ObservableObject {
         minefield?[point].state = .revealed
         revealSurrounding(point: point, alreadyChecked: [])
     }
-    func flag(_ point: Point) {
+    func toggleFlag(_ point: Point) {
         if minefield == nil {
             minefield = Minefield(initialPoint: nil, width: width, height: height, mineCount: mineCount)
         }
-        minefield?[point].state = .flagged
+        switch minefield?[point].state {
+        case .flagged:
+            minefield?[point].state = .unmarked
+        case .unmarked:
+            minefield?[point].state = .flagged
+        case .none, .probed, .revealed, .unknown:
+            break
+        }
     }
 
     func reset() {
@@ -81,7 +88,8 @@ class GameState: ObservableObject {
         self.height = height
         self.mineCount = mineCount
         $minefield
-            .combineLatest($mineCount).map { (minefield, mineCount) -> Status in
+            .combineLatest($mineCount)
+            .map { minefield, mineCount -> Status in
                 guard let field = minefield else { return .unstarted }
                 if field.revealed.contains(.mine) {
                     return .loss
@@ -98,13 +106,12 @@ class GameState: ObservableObject {
             .removeDuplicates { $0 == $1 }
             .sink { [weak self] in self?.timer = $0 ? self?.prepareTimer() : nil }
             .store(in: &cancellales)
-
     }
 
-    private func prepareTimer() -> AnyCancellable{
+    private func prepareTimer() -> AnyCancellable {
         Timer.publish(every: 1, on: .main, in: .default)
             .autoconnect()
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in self?.elapsed += 1}
+            .sink { [weak self] _ in self?.elapsed += 1 }
     }
 }

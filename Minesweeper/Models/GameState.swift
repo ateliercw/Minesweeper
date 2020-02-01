@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import Combine
 
 class GameState: ObservableObject {
     enum Status {
+        case unstarted
         case active
         case win
         case loss
@@ -24,14 +26,17 @@ class GameState: ObservableObject {
     @Published var elapsed: Int
 
     @Published private var minefield: Minefield?
+    private var timer: AnyCancellable?
+    private var cancellales = Set<AnyCancellable>()
 
-    var status: Status {
-        if minefield?.revealed.contains(.mine) == true {
-            return .loss
-        } else if minefield?.unrevealed.count == mineCount {
-            return .win
-        } else {
-            return .active
+    @Published var status: Status = .active
+
+    var flaggedCount: Int {
+        switch status {
+        case .win:
+            return mineCount
+        case .active, .loss, .unstarted:
+            return minefield?.flaggedCount ?? 0
         }
     }
 
@@ -43,8 +48,21 @@ class GameState: ObservableObject {
         if minefield == nil {
             minefield = Minefield(initialPoint: point, width: width, height: height, mineCount: mineCount)
         }
+        guard minefield?[point].state == .unmarked else { return }
         minefield?[point].state = .revealed
         revealSurrounding(point: point, alreadyChecked: [])
+    }
+    func flag(_ point: Point) {
+        if minefield == nil {
+            minefield = Minefield(initialPoint: nil, width: width, height: height, mineCount: mineCount)
+        }
+        minefield?[point].state = .flagged
+    }
+
+    func reset() {
+        timer = nil
+        elapsed = 0
+        minefield = nil
     }
 
     private func revealSurrounding(point: Point, alreadyChecked: Set<Point>) {
@@ -57,10 +75,36 @@ class GameState: ObservableObject {
         }
     }
 
-    init(width: Int, height: Int, minecount: Int) {
+    init(width: Int, height: Int, mineCount: Int) {
         self.elapsed = 0
         self.width = width
         self.height = height
-        self.mineCount = minecount
+        self.mineCount = mineCount
+        $minefield
+            .combineLatest($mineCount).map { (minefield, mineCount) -> Status in
+                guard let field = minefield else { return .unstarted }
+                if field.revealed.contains(.mine) {
+                    return .loss
+                } else if field.unrevealed.count == mineCount {
+                    return .win
+                } else {
+                    return .active
+                }
+            }
+            .assign(to: \.status, on: self)
+            .store(in: &cancellales)
+        $status
+            .map { $0 == .active }
+            .removeDuplicates { $0 == $1 }
+            .sink { [weak self] in self?.timer = $0 ? self?.prepareTimer() : nil }
+            .store(in: &cancellales)
+
+    }
+
+    private func prepareTimer() -> AnyCancellable{
+        Timer.publish(every: 1, on: .main, in: .default)
+            .autoconnect()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in self?.elapsed += 1}
     }
 }

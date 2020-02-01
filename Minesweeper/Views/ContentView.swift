@@ -12,21 +12,61 @@ struct ContentView: View {
     /*
      -Beginner:       9x9  Area -  81 Squares - 10 mines
      -Intermediate:  16x16 Area - 256 Squares - 40 mines
-     -Expert:        16x30 Area - 480 Squares - 99 mine
+     -Expert:        16x30 Area - 480 Squares - 99 mines
      */
 
-    @ObservedObject var state = GameState(width: 9, height: 9, minecount: 10)
+    @ObservedObject var state = GameState(width: 9, height: 9, mineCount: 10)
 
     var body: some View {
+        VStack {
+            HStack {
+                Text("\(state.mineCount - state.flaggedCount)")
+                Spacer()
+                Button(action: { self.state.reset() }, label: { Text("􀊯") })
+                Spacer()
+                Text("\(state.elapsed)")
+            }
+            board
+        }.padding()
+    }
+
+    var board: some View {
         ForEach(0..<state.height) { [state] row in
             HStack {
                 ForEach(0..<state.width) { col in
-                    Button(action: { state.reveal(Point(x: col, y: row)) },
-                           label: { Text(state.label(Point(x: col, y: row))) })
+                    MineButton(label: state.label(Point(x: col, y: row)),
+                               reveal: { state.reveal(Point(x: col, y: row)) },
+                               flag: { state.flag(Point(x: col, y: row)) })
                 }
-            }
+            }.font(Font.body)
         }
-        .disabled(state.status != .active)
+        .disabled(state.status == .win || state.status == .loss)
+    }
+}
+
+struct MineButton: View {
+    var label: String
+//    var reveal: () -> Void
+//    var flag: () -> Void
+
+    private let revealGesture: AnyGesture<()>
+    private let flagGesture: AnyGesture<()>
+
+    init(label: String, reveal: @escaping () -> Void, flag: @escaping () -> Void) {
+        self.label = label
+        let revealGesture = TapGesture()
+            .onEnded(reveal)
+        self.revealGesture = AnyGesture(revealGesture)
+        let flagGesture = TapGesture()
+            .modifiers(.option)
+            .onEnded(flag)
+        self.flagGesture = AnyGesture(flagGesture)
+    }
+
+    var body: some View {
+        Text(label)
+            .gesture(flagGesture)
+            .gesture(revealGesture)
     }
 }
 
@@ -35,7 +75,8 @@ extension GameState {
         let element = self[point]
         switch (element.state, status, element.info) {
         case (.flagged, .active, _): return "􀋊"
-        case (.unmarked, .active, _): return "􀂓"
+        case (.unmarked, .active, _),
+             (.unmarked, .unstarted, _): return "􀂓"
         case (.unknown, .active, _): return "􀃭"
         case (.probed, .active, .empty): return "􀕮"
         case (.revealed, _, .mine): return "􀃮"

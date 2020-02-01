@@ -25,7 +25,13 @@ struct Minefield {
             .map { $0.info }
     }
 
-    init(initialPoint: Point, width: Int, height: Int, mineCount: Int) {
+    var flaggedCount: Int {
+        data.values
+            .filter { $0.state == .flagged }
+            .count
+    }
+
+    init(initialPoint: Point?, width: Int, height: Int, mineCount: Int) {
         self.width = width
         self.height = height
         assert(mineCount <= (width * height) - 1)

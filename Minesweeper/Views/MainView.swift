@@ -13,7 +13,7 @@ struct MainView: View {
 
     var body: some View {
         VStack {
-            MinesweeperHeader(remainingMines: state.mineCount - state.flaggedCount,
+            MinesweeperHeader(remainingMines: state.configuration.mineCount - state.flaggedCount,
                               elapsedTime: state.elapsed,
                               resetAction: state.reset)
             Spacer()
@@ -23,10 +23,9 @@ struct MainView: View {
         .padding()
         .font(Font.body)
         .fixedSize()
-        .sheet(isPresented: $state.showSettings) { [self] in
-            PreferencesView(width: self.$state.width,
-                            height: self.$state.height,
-                            mines: self.$state.mineCount) { self.state.showSettings.toggle() }
+        .sheet(isPresented: $state.showSettings) { [state] in
+            PreferencesView(updateConfiguration: { state.configuration = $0 },
+                            dismissAction: { state.showSettings.toggle() })
         }
     }
 }

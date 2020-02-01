@@ -9,9 +9,7 @@
 import SwiftUI
 
 struct PreferencesView: View {
-    @Binding var width: Int
-    @Binding var height: Int
-    @Binding var mines: Int
+    let updateConfiguration: (Minefield.Configuration) -> Void
     let dismissAction: () -> Void
 
     var body: some View {
@@ -25,31 +23,23 @@ struct PreferencesView: View {
     }
 
     func setBeginner() {
-        width = 9
-        height = 9
-        mines = 10
+        updateConfiguration(.init(width: 9, height: 9, mineCount: 10))
         dismissAction()
     }
 
     func setIntermediate() {
-        width = 16
-        height = 16
-        mines = 40
+        updateConfiguration(.init(width: 16, height: 16, mineCount: 40))
         dismissAction()
     }
 
     func setExpert() {
-        width = 30
-        height = 16
-        mines = 99
+        updateConfiguration(.init(width: 30, height: 16, mineCount: 99))
         dismissAction()
     }
 }
 
 struct PreferencesView_Previews: PreviewProvider {
     static var previews: some View {
-        PreferencesView(width: Binding<Int>(get: { 0 }, set: { _ in }),
-                        height: Binding<Int>(get: { 0 }, set: { _ in }),
-                        mines: Binding<Int>(get: { 0 }, set: { _ in })) {}
+        PreferencesView(updateConfiguration: { _ in }, dismissAction: {})
     }
 }

@@ -10,11 +10,9 @@ import Foundation
 import Combine
 
 class GameState: ObservableObject {
-    @Published var width: Int { didSet { reset() } }
-    @Published var height: Int { didSet { reset() } }
-    @Published var mineCount: Int { didSet { reset() } }
-    @Published var elapsed: Int
-    @Published var status: Status = .active
+    @Published var configuration: Minefield.Configuration
+    @Published private(set) var elapsed: Int
+    @Published private(set) var status: Status = .active
     @Published private var minefield: Minefield?
     @Published var showSettings: Bool = false
     private var timer: AnyCancellable?
@@ -23,7 +21,7 @@ class GameState: ObservableObject {
     var flaggedCount: Int {
         switch status {
         case .win:
-            return mineCount
+            return configuration.mineCount
         case .active, .loss, .unstarted:
             return minefield?.flaggedCount ?? 0
         }
@@ -35,7 +33,7 @@ class GameState: ObservableObject {
 
     func reveal(_ point: Point) {
         if minefield == nil {
-            minefield = Minefield(initialPoint: point, width: width, height: height, mineCount: mineCount)
+            minefield = Minefield(initialPoint: point, configuration: configuration)
         }
         guard minefield?[point].state == .unmarked else { return }
         minefield?[point].state = .revealed
@@ -44,7 +42,7 @@ class GameState: ObservableObject {
 
     func toggleFlag(_ point: Point) {
         if minefield == nil {
-            minefield = Minefield(initialPoint: nil, width: width, height: height, mineCount: mineCount)
+            minefield = Minefield(initialPoint: nil, configuration: configuration)
         }
         switch minefield?[point].state {
         case .flagged:
@@ -73,13 +71,19 @@ class GameState: ObservableObject {
         }
     }
 
-    init(width: Int, height: Int, mineCount: Int) {
+    init(configuration: Minefield.Configuration) {
         self.elapsed = 0
-        self.width = width
-        self.height = height
-        self.mineCount = mineCount
+        self.configuration = configuration
+        prepareBindings()
+    }
+
+    private func prepareBindings() {
+        $configuration
+            .map { _ in () }
+            .sink(receiveValue: reset)
+            .store(in: &cancellales)
         $minefield
-            .combineLatest($mineCount)
+            .combineLatest($configuration.map { $0.mineCount })
             .map { minefield, mineCount -> GameState.Status in
                 minefield?.status(mineCount: mineCount) ?? .unstarted
             }

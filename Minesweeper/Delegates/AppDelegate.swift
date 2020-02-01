@@ -13,7 +13,7 @@ import Combine
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     var window: NSWindow!
-    private let state = GameState(width: 9, height: 9, mineCount: 10)
+    private let state = GameState(configuration: .init(width: 9, height: 9, mineCount: 10))
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.

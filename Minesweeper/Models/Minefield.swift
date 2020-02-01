@@ -31,22 +31,22 @@ struct Minefield {
             .count
     }
 
-    init(initialPoint: Point?, width: Int, height: Int, mineCount: Int) {
-        self.width = width
-        self.height = height
-        assert(mineCount <= (width * height) - 1)
-        let allPoints = (0..<width).flatMap { x in
-            (0..<height).map { Point(x: x, y: $0) }
+    init(initialPoint: Point?, configuration: Minefield.Configuration) {
+        self.width = configuration.width
+        self.height = configuration.height
+        assert(configuration.mineCount <= (configuration.width * configuration.height) - 1)
+        let allPoints = (0..<configuration.width).flatMap { x in
+            (0..<configuration.height).map { Point(x: x, y: $0) }
         }
         let minePoints = allPoints
             .filter { $0 != initialPoint }
-            .shuffled()[0..<mineCount]
+            .shuffled()[0..<configuration.mineCount]
         var initialField = [Point: MineInfo]()
         for point in minePoints {
             initialField[point] = .mine
         }
         for point in allPoints where initialField[point] != .mine {
-            let mineCount = Self.pointsSurrounding(point, width: width, height: height)
+            let mineCount = Self.pointsSurrounding(point, width: configuration.width, height: configuration.height)
                 .map { initialField[$0] }
                 .filter { $0 == .mine }
                 .count

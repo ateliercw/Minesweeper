@@ -46,27 +46,22 @@ struct ContentView: View {
 
 struct MineButton: View {
     var label: String
-//    var reveal: () -> Void
-//    var flag: () -> Void
-
-    private let revealGesture: AnyGesture<()>
-    private let flagGesture: AnyGesture<()>
+    var reveal: () -> Void
+    var flag: () -> Void
 
     init(label: String, reveal: @escaping () -> Void, flag: @escaping () -> Void) {
         self.label = label
-        let revealGesture = TapGesture()
-            .onEnded(reveal)
-        self.revealGesture = AnyGesture(revealGesture)
-        let flagGesture = TapGesture()
-            .modifiers(.option)
-            .onEnded(flag)
-        self.flagGesture = AnyGesture(flagGesture)
+        self.reveal = reveal
+        self.flag = flag
     }
 
     var body: some View {
         Text(label)
-            .gesture(flagGesture)
-            .gesture(revealGesture)
+            .highPriorityGesture(TapGesture()
+                .modifiers(.option)
+                .onEnded(flag))
+            .gesture(TapGesture()
+                .onEnded(reveal))
     }
 }
 

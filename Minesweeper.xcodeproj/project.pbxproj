@@ -32,6 +32,7 @@
 		2680F31A238D6E7C00E6764D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2680F319238D6E7C00E6764D /* Assets.xcassets */; };
 		2680F31D238D6E7C00E6764D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2680F31C238D6E7C00E6764D /* Preview Assets.xcassets */; };
 		2680F320238D6E7C00E6764D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2680F31E238D6E7C00E6764D /* Main.storyboard */; };
+		26C8122A238F196200592D9D /* GameState+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C81229238F196200592D9D /* GameState+Status.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		2680F31F238D6E7C00E6764D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2680F321238D6E7C00E6764D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2680F322238D6E7C00E6764D /* Minesweeper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Minesweeper.entitlements; sourceTree = "<group>"; };
+		26C81229238F196200592D9D /* GameState+Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameState+Status.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,12 +93,13 @@
 		260D5F23238C837100905382 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				261846A5238D2E02003FB0D0 /* GameState.swift */,
+				26C81229238F196200592D9D /* GameState+Status.swift */,
+				261846A7238D3E5A003FB0D0 /* GridState.swift */,
 				260D5F25238C83CD00905382 /* Minefield.swift */,
 				261846AB238D44AA003FB0D0 /* MineInfo.swift */,
 				261846A9238D3E69003FB0D0 /* PlayedState.swift */,
-				261846A7238D3E5A003FB0D0 /* GridState.swift */,
 				260D5F27238C893000905382 /* Point.swift */,
-				261846A5238D2E02003FB0D0 /* GameState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				2614BFA8238D6EC800F7E25E /* ContentView.swift in Sources */,
 				2680F316238D6E7B00E6764D /* AppDelegate.swift in Sources */,
 				2614BFA6238D6EC600F7E25E /* Point.swift in Sources */,
+				26C8122A238F196200592D9D /* GameState+Status.swift in Sources */,
 				2614BFA2238D6EC600F7E25E /* Minefield.swift in Sources */,
 				2614BFA5238D6EC600F7E25E /* GridState.swift in Sources */,
 				2614BFA3238D6EC600F7E25E /* MineInfo.swift in Sources */,

@@ -10,26 +10,14 @@ import Foundation
 import Combine
 
 class GameState: ObservableObject {
-    enum Status {
-        case unstarted
-        case active
-        case win
-        case loss
-    }
-
     @Published var width: Int
-
     @Published var height: Int
-
     @Published var mineCount: Int
-
     @Published var elapsed: Int
-
+    @Published var status: Status = .active
     @Published private var minefield: Minefield?
     private var timer: AnyCancellable?
     private var cancellales = Set<AnyCancellable>()
-
-    @Published var status: Status = .active
 
     var flaggedCount: Int {
         switch status {
@@ -52,6 +40,7 @@ class GameState: ObservableObject {
         minefield?[point].state = .revealed
         revealSurrounding(point: point, alreadyChecked: [])
     }
+
     func toggleFlag(_ point: Point) {
         if minefield == nil {
             minefield = Minefield(initialPoint: nil, width: width, height: height, mineCount: mineCount)
@@ -74,10 +63,11 @@ class GameState: ObservableObject {
 
     private func revealSurrounding(point: Point, alreadyChecked: Set<Point>) {
         minefield?[point].state = .revealed
-        guard let gridPoint = minefield?[point], gridPoint.info == .empty, gridPoint.state != .flagged  else { return }
+        guard let gridPoint = minefield?[point], gridPoint.info == .empty  else { return }
         let surrounding = Set(minefield?.pointsSurrounding(point) ?? [])
             .subtracting(alreadyChecked)
         for point in surrounding {
+            guard minefield?[point].state != .flagged else { continue }
             revealSurrounding(point: point, alreadyChecked: surrounding.union(alreadyChecked).union([point]))
         }
     }
@@ -89,22 +79,16 @@ class GameState: ObservableObject {
         self.mineCount = mineCount
         $minefield
             .combineLatest($mineCount)
-            .map { minefield, mineCount -> Status in
-                guard let field = minefield else { return .unstarted }
-                if field.revealed.contains(.mine) {
-                    return .loss
-                } else if field.unrevealed.count == mineCount {
-                    return .win
-                } else {
-                    return .active
-                }
+            .map { minefield, mineCount -> GameState.Status in
+                minefield?.status(mineCount: mineCount) ?? .unstarted
             }
             .assign(to: \.status, on: self)
             .store(in: &cancellales)
         $status
             .map { $0 == .active }
-            .removeDuplicates { $0 == $1 }
-            .sink { [weak self] in self?.timer = $0 ? self?.prepareTimer() : nil }
+            .removeDuplicates()
+            .map { $0 ? self.prepareTimer() : nil }
+            .assign(to: \.timer, on: self)
             .store(in: &cancellales)
     }
 
@@ -113,5 +97,17 @@ class GameState: ObservableObject {
             .autoconnect()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in self?.elapsed += 1 }
+    }
+}
+
+private extension Minefield {
+    func status(mineCount: Int) -> GameState.Status {
+        if revealed.contains(.mine) {
+            return .loss
+        } else if unrevealed.count == mineCount {
+            return .win
+        } else {
+            return .active
+        }
     }
 }

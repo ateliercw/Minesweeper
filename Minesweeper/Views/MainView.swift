@@ -18,7 +18,6 @@ struct MainView: View {
                               resetAction: state.reset)
             Spacer()
             GameBoard(state: state)
-                .drawingGroup()
         }
         .padding()
         .font(Font.body)

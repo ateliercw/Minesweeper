@@ -13,22 +13,20 @@ struct MineButton: View {
     let status: GameState.Status
     let reveal: () -> Void
     let flag: () -> Void
+    let probe: () -> Void
 
     var body: some View {
         ZStack {
             if gridState.state != .revealed {
                 Image(Asset.unrevealed).blendMode(.multiply)
             }
-            Text(gridState.label(status: status))
+            Text(gridState.label(status: status)).bold()
         }
         .foregroundColor(gridState.textColor)
         .frame(width: 30, height: 30)
         .background(gridState.backgroundColor)
-        .highPriorityGesture(TapGesture()
-        .modifiers(.option)
-        .onEnded(flag))
-        .gesture(TapGesture()
-        .onEnded(reveal))
+        .highPriorityGesture(TapGesture().modifiers(.option).onEnded(flag))
+        .gesture(TapGesture().onEnded { [reveal, probe] in reveal(); probe() })
     }
 }
 
@@ -65,6 +63,7 @@ struct MineButton_Previews: PreviewProvider {
         MineButton(gridState: GridState(state: .flagged, info: .mine),
                    status: .active,
                    reveal: {},
-                   flag: {})
+                   flag: {},
+                   probe: {})
     }
 }

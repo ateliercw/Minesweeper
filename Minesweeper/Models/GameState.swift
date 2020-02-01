@@ -54,6 +54,22 @@ class GameState: ObservableObject {
         }
     }
 
+    func probe(_ point: Point) {
+        guard minefield != nil,
+            let status = minefield?[point],
+            status.state == .revealed,
+            case .count(let mineCount) = status.info,
+            let points = minefield?.pointsSurrounding(point) else { return }
+        let flaggedCount = points
+            .compactMap { minefield?[$0] }
+            .filter { $0.state == .flagged }
+            .count
+        guard flaggedCount == mineCount else { return }
+        for point in points {
+            reveal(point)
+        }
+    }
+
     func reset() {
         timer = nil
         elapsed = 0
@@ -66,7 +82,7 @@ class GameState: ObservableObject {
         let surrounding = Set(minefield?.pointsSurrounding(point) ?? [])
             .subtracting(alreadyChecked)
         for point in surrounding where minefield?[point].state != .flagged {
-            let alreadyChecked = alreadyChecked.union(surrounding.union(alreadyChecked).union([point]))
+            let alreadyChecked = alreadyChecked.union(surrounding).union(alreadyChecked).union([point])
             revealSurrounding(point: point, alreadyChecked: alreadyChecked)
         }
     }

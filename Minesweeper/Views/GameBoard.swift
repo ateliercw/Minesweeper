@@ -37,7 +37,8 @@ private extension MineButton {
             gridState: state[point],
             status: state.status,
             reveal: { state.reveal(point) },
-            flag: { state.toggleFlag(point) }
+            flag: { state.toggleFlag(point) },
+            probe: { state.probe(point) }
         )
     }
 }

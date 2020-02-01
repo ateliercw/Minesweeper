@@ -15,18 +15,41 @@ struct MineButton: View {
     let flag: () -> Void
     let probe: () -> Void
 
+    private var revealAndProbe: () -> Void {
+        let action = { [reveal, probe] in
+            reveal()
+            probe()
+        }
+        return action
+    }
+
     var body: some View {
+        Button(action: revealAndProbe) {
+            Text(gridState.label(status: status)).bold()
+        }
+        .buttonStyle(MineButtonConfiguration(gridState: gridState))
+        .highPriorityGesture(TapGesture().modifiers(.option).onEnded(flag))
+    }
+}
+
+struct MineButtonConfiguration: ButtonStyle {
+    let gridState: GridState
+
+    func opacity(configuration: Self.Configuration) -> Double {
+        configuration.isPressed ? 0.3 : 1
+    }
+
+    func makeBody(configuration: Self.Configuration) -> some View {
         ZStack {
             if gridState.state != .revealed {
                 Image(Asset.unrevealed).blendMode(.multiply)
             }
-            Text(gridState.label(status: status)).bold()
+            configuration.label
         }
         .foregroundColor(gridState.textColor)
         .frame(width: 30, height: 30)
         .background(gridState.backgroundColor)
-        .highPriorityGesture(TapGesture().modifiers(.option).onEnded(flag))
-        .gesture(TapGesture().onEnded { [reveal, probe] in reveal(); probe() })
+        .opacity(opacity(configuration: configuration))
     }
 }
 

@@ -28,7 +28,7 @@ class GameState: ObservableObject {
     }
 
     subscript(_ point: Point) -> GridState {
-        return minefield?[point] ?? GridState(state: .unmarked, info: .empty)
+        minefield?[point] ?? GridState(state: .unmarked, info: .empty)
     }
 
     func reveal(_ point: Point) {

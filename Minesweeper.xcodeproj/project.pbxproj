@@ -8,18 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		3D1844CA2862229300BE9F68 /* MinesweeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1844C92862229300BE9F68 /* MinesweeperApp.swift */; };
-		3D1844CC2862229300BE9F68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1844CB2862229300BE9F68 /* ContentView.swift */; };
 		3D1844CE2862229400BE9F68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D1844CD2862229400BE9F68 /* Assets.xcassets */; };
 		3D1844D22862229400BE9F68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D1844D12862229400BE9F68 /* Preview Assets.xcassets */; };
+		3D1844DA286222F100BE9F68 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1844CB2862229300BE9F68 /* RootView.swift */; };
+		3D1844DC2862614B00BE9F68 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1844DB2862614B00BE9F68 /* SettingsView.swift */; };
+		3D8AFE1B2867BACE00C81889 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AFE1A2867BACE00C81889 /* Header.swift */; };
+		3D9AF5C22863CD690044F9C9 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AF5C12863CD690044F9C9 /* SettingsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3D1844C62862229300BE9F68 /* Minesweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minesweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D1844C92862229300BE9F68 /* MinesweeperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinesweeperApp.swift; sourceTree = "<group>"; };
-		3D1844CB2862229300BE9F68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3D1844CB2862229300BE9F68 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		3D1844CD2862229400BE9F68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D1844CF2862229400BE9F68 /* Minesweeper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Minesweeper.entitlements; sourceTree = "<group>"; };
 		3D1844D12862229400BE9F68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3D1844DB2862614B00BE9F68 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		3D8AFE1A2867BACE00C81889 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		3D9AF5C12863CD690044F9C9 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,10 +58,10 @@
 		3D1844C82862229300BE9F68 /* Minesweeper */ = {
 			isa = PBXGroup;
 			children = (
+				3D9AF5C02863CD5C0044F9C9 /* Services */,
 				3D1844C92862229300BE9F68 /* MinesweeperApp.swift */,
-				3D1844CB2862229300BE9F68 /* ContentView.swift */,
-				3D1844CD2862229400BE9F68 /* Assets.xcassets */,
-				3D1844CF2862229400BE9F68 /* Minesweeper.entitlements */,
+				3D1844D9286222D600BE9F68 /* Views */,
+				3D1844D82862229C00BE9F68 /* Resources */,
 				3D1844D02862229400BE9F68 /* Preview Content */,
 			);
 			path = Minesweeper;
@@ -67,6 +73,33 @@
 				3D1844D12862229400BE9F68 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3D1844D82862229C00BE9F68 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3D1844CF2862229400BE9F68 /* Minesweeper.entitlements */,
+				3D1844CD2862229400BE9F68 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3D1844D9286222D600BE9F68 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3D1844CB2862229300BE9F68 /* RootView.swift */,
+				3D8AFE1A2867BACE00C81889 /* Header.swift */,
+				3D1844DB2862614B00BE9F68 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3D9AF5C02863CD5C0044F9C9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3D9AF5C12863CD690044F9C9 /* SettingsService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +172,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D1844CC2862229300BE9F68 /* ContentView.swift in Sources */,
+				3D8AFE1B2867BACE00C81889 /* Header.swift in Sources */,
+				3D1844DC2862614B00BE9F68 /* SettingsView.swift in Sources */,
+				3D1844DA286222F100BE9F68 /* RootView.swift in Sources */,
+				3D9AF5C22863CD690044F9C9 /* SettingsService.swift in Sources */,
 				3D1844CA2862229300BE9F68 /* MinesweeperApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,7 +297,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Minesweeper/Minesweeper.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Minesweeper/Resources/Minesweeper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Minesweeper/Preview Content\"";
@@ -276,15 +312,17 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atelierclockwork.Minesweeper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -293,7 +331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Minesweeper/Minesweeper.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Minesweeper/Resources/Minesweeper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Minesweeper/Preview Content\"";
@@ -308,15 +346,17 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atelierclockwork.Minesweeper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

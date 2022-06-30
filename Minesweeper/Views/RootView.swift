@@ -8,22 +8,31 @@
 import SwiftUI
 
 struct RootView: View {
-    @StateObject private var settingsService = SettingsService()
+    @ObservedObject private var gameService: GameService
+    @ObservedObject private var settingsService: SettingsService
+
     @State private var showSettings: Bool = false
+
+    init(gameService: GameService, settingsService: SettingsService) {
+        _gameService = ObservedObject(wrappedValue: gameService)
+        _settingsService = ObservedObject(wrappedValue: settingsService)
+    }
 
     var body: some View {
         NavigationStack {
             VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
-                Text("Hello, world!")
-                Button("Show") {
+                GameView()
+                    .environmentObject(gameService)
+                Spacer()
+                Button("Settings") {
                     showSettings = true
                 }
-                Spacer()
             }
-            .withHeader(time: 10, mineCount: 10, gameState: .active) {}
+            .padding()
+            .withHeader(gameService: gameService)
+            .onChange(of: settingsService.width) { _ in gameService.resetGame() }
+            .onChange(of: settingsService.height) { _ in gameService.resetGame() }
+            .onChange(of: settingsService.mineCount) { _ in gameService.resetGame() }
             .navigationBarTitleDisplayMode(.inline)
         }
         .sheet(isPresented: $showSettings) {
@@ -34,14 +43,12 @@ struct RootView: View {
             }
         }
     }
-
-    private func headerButtonTapped() {
-
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView()
+        let settingsService = SettingsService()
+        RootView(gameService: GameService(settingsService: settingsService),
+                 settingsService: settingsService)
     }
 }

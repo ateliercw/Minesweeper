@@ -23,7 +23,7 @@ struct SettingsView: View {
             difficultySection
             customSection
         }
-        .onChange(of: width + height) { _ in
+        .onChange(of: width * height) { _ in
             updateMineCount()
         }
         .monospacedDigit()
@@ -34,8 +34,10 @@ struct SettingsView: View {
             }
         }
     }
+}
 
-    private var difficultySection: some View {
+private extension SettingsView {
+    var difficultySection: some View {
         Section("Difficulty") {
             ForEach(Difficulty.allCases) { difficulty in
                 Button(difficulty.label) {
@@ -45,7 +47,7 @@ struct SettingsView: View {
         }
     }
 
-    private var customSection: some View {
+    var customSection: some View {
         Section("Custom") {
             LabelSlider(value: $width, label: "Width:", range: 9...32)
             LabelSlider(value: $height, label: "Height:", range: 9...32)
@@ -53,13 +55,13 @@ struct SettingsView: View {
         }
     }
 
-    private func apply(_ difficulty: Difficulty) {
+    func apply(_ difficulty: Difficulty) {
         width = difficulty.width
         height = difficulty.height
         mines = difficulty.mineCount
     }
 
-    private func updateMineCount() {
+    func updateMineCount() {
         mines = min(maxMines, mines)
     }
 }
@@ -100,7 +102,7 @@ extension Binding where Value == Int {
 
 // MARK: - Difficulty
 private extension SettingsView {
-    private enum Difficulty: CaseIterable, Identifiable, Hashable {
+    enum Difficulty: CaseIterable, Identifiable, Hashable {
         var id: Self { self }
 
         case easy

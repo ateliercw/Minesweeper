@@ -6,14 +6,34 @@
 	objectVersion = 56;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		3DD04C7E286E2BFA002EA4C4 /* SwiftLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 3DD04C81286E2BFA002EA4C4 /* Build configuration list for PBXAggregateTarget "SwiftLint" */;
+			buildPhases = (
+				3DD04C82286E2C0B002EA4C4 /* SwiftLint */,
+			);
+			dependencies = (
+			);
+			name = SwiftLint;
+			productName = SwiftLint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		3D1844CA2862229300BE9F68 /* MinesweeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1844C92862229300BE9F68 /* MinesweeperApp.swift */; };
 		3D1844CE2862229400BE9F68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D1844CD2862229400BE9F68 /* Assets.xcassets */; };
 		3D1844D22862229400BE9F68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D1844D12862229400BE9F68 /* Preview Assets.xcassets */; };
 		3D1844DA286222F100BE9F68 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1844CB2862229300BE9F68 /* RootView.swift */; };
 		3D1844DC2862614B00BE9F68 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1844DB2862614B00BE9F68 /* SettingsView.swift */; };
+		3D3EDAD22868A57000A3C41D /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3EDAD12868A57000A3C41D /* GameService.swift */; };
+		3D3EDAD52868A92800A3C41D /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3EDAD42868A92800A3C41D /* Game.swift */; };
+		3D7A4A1E286E2CFD005646CF /* Game+SpaceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A1D286E2CFD005646CF /* Game+SpaceState.swift */; };
+		3D7A4A20286E2D1B005646CF /* Game+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A1F286E2D1B005646CF /* Game+State.swift */; };
+		3D7A4A24286E32F7005646CF /* GridPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A4A23286E32F7005646CF /* GridPoint.swift */; };
 		3D8AFE1B2867BACE00C81889 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AFE1A2867BACE00C81889 /* Header.swift */; };
 		3D9AF5C22863CD690044F9C9 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AF5C12863CD690044F9C9 /* SettingsService.swift */; };
+		3DFC295D2869FA3600DC84CB /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFC295C2869FA3600DC84CB /* GameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +44,14 @@
 		3D1844CF2862229400BE9F68 /* Minesweeper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Minesweeper.entitlements; sourceTree = "<group>"; };
 		3D1844D12862229400BE9F68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3D1844DB2862614B00BE9F68 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		3D3EDAD12868A57000A3C41D /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
+		3D3EDAD42868A92800A3C41D /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		3D7A4A1D286E2CFD005646CF /* Game+SpaceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+SpaceState.swift"; sourceTree = "<group>"; };
+		3D7A4A1F286E2D1B005646CF /* Game+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+State.swift"; sourceTree = "<group>"; };
+		3D7A4A23286E32F7005646CF /* GridPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPoint.swift; sourceTree = "<group>"; };
 		3D8AFE1A2867BACE00C81889 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		3D9AF5C12863CD690044F9C9 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		3DFC295C2869FA3600DC84CB /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +84,7 @@
 		3D1844C82862229300BE9F68 /* Minesweeper */ = {
 			isa = PBXGroup;
 			children = (
+				3D3EDAD32868A92100A3C41D /* Models */,
 				3D9AF5C02863CD5C0044F9C9 /* Services */,
 				3D1844C92862229300BE9F68 /* MinesweeperApp.swift */,
 				3D1844D9286222D600BE9F68 /* Views */,
@@ -90,14 +117,27 @@
 				3D1844CB2862229300BE9F68 /* RootView.swift */,
 				3D8AFE1A2867BACE00C81889 /* Header.swift */,
 				3D1844DB2862614B00BE9F68 /* SettingsView.swift */,
+				3DFC295C2869FA3600DC84CB /* GameView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		3D3EDAD32868A92100A3C41D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3D3EDAD42868A92800A3C41D /* Game.swift */,
+				3D7A4A1D286E2CFD005646CF /* Game+SpaceState.swift */,
+				3D7A4A1F286E2D1B005646CF /* Game+State.swift */,
+				3D7A4A23286E32F7005646CF /* GridPoint.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		3D9AF5C02863CD5C0044F9C9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				3D9AF5C12863CD690044F9C9 /* SettingsService.swift */,
+				3D3EDAD12868A57000A3C41D /* GameService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -135,6 +175,9 @@
 					3D1844C52862229300BE9F68 = {
 						CreatedOnToolsVersion = 14.0;
 					};
+					3DD04C7E286E2BFA002EA4C4 = {
+						CreatedOnToolsVersion = 14.0;
+					};
 				};
 			};
 			buildConfigurationList = 3D1844C12862229300BE9F68 /* Build configuration list for PBXProject "Minesweeper" */;
@@ -151,6 +194,7 @@
 			projectRoot = "";
 			targets = (
 				3D1844C52862229300BE9F68 /* Minesweeper */,
+				3DD04C7E286E2BFA002EA4C4 /* SwiftLint */,
 			);
 		};
 /* End PBXProject section */
@@ -167,6 +211,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3DD04C82286E2C0B002EA4C4 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3D1844C22862229300BE9F68 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -174,8 +239,14 @@
 			files = (
 				3D8AFE1B2867BACE00C81889 /* Header.swift in Sources */,
 				3D1844DC2862614B00BE9F68 /* SettingsView.swift in Sources */,
+				3D3EDAD52868A92800A3C41D /* Game.swift in Sources */,
 				3D1844DA286222F100BE9F68 /* RootView.swift in Sources */,
+				3D7A4A20286E2D1B005646CF /* Game+State.swift in Sources */,
+				3D7A4A1E286E2CFD005646CF /* Game+SpaceState.swift in Sources */,
+				3D7A4A24286E32F7005646CF /* GridPoint.swift in Sources */,
+				3D3EDAD22868A57000A3C41D /* GameService.swift in Sources */,
 				3D9AF5C22863CD690044F9C9 /* SettingsService.swift in Sources */,
+				3DFC295D2869FA3600DC84CB /* GameView.swift in Sources */,
 				3D1844CA2862229300BE9F68 /* MinesweeperApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,6 +431,24 @@
 			};
 			name = Release;
 		};
+		3DD04C7F286E2BFA002EA4C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8NQ6VJNLCQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3DD04C80286E2BFA002EA4C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8NQ6VJNLCQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -377,6 +466,15 @@
 			buildConfigurations = (
 				3D1844D62862229400BE9F68 /* Debug */,
 				3D1844D72862229400BE9F68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DD04C81286E2BFA002EA4C4 /* Build configuration list for PBXAggregateTarget "SwiftLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DD04C7F286E2BFA002EA4C4 /* Debug */,
+				3DD04C80286E2BFA002EA4C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -8,25 +8,13 @@
 import SwiftUI
 
 extension View {
-    func withHeader(time: Int,
-                    mineCount: Int,
-                    gameState: Header.GameState,
-                    onButtonTap: @escaping () -> Void) -> some View {
-        self.modifier(Header(time: time, mineCount: mineCount, gameState: gameState, onButtonTap: onButtonTap))
+    func withHeader(gameService: GameService) -> some View {
+        modifier(Header(gameService: gameService))
     }
 }
 
 struct Header: ViewModifier {
-    enum GameState {
-        case active
-        case win
-        case lose
-    }
-
-    let time: Int
-    let mineCount: Int
-    let gameState: GameState
-    let onButtonTap: () -> Void
+    @ObservedObject var gameService: GameService
 
     func body(content: Content) -> some View {
         content
@@ -42,8 +30,7 @@ struct Header: ViewModifier {
             Text("Time:")
                 .foregroundColor(.secondary)
                 .font(.callout)
-            Text("\(time, format: .number.precision(.integerLength(3)))")
-                .monospacedDigit()
+            TimerView(gameService: gameService)
         }
     }
 
@@ -52,26 +39,42 @@ struct Header: ViewModifier {
             Text("Mines:")
                 .foregroundColor(.secondary)
                 .font(.callout)
-            Text("\(mineCount, format: .number.precision(.integerLength(3)))")
+            Text("\(gameService.remainingMines, format: .number.precision(.integerLength(3)))")
                 .monospacedDigit()
         }
     }
 
     private var actionButton: some View {
-        Button(action: onButtonTap) {
-            Image(systemName: gameState.image)
+        Button {
+            gameService.resetGame()
+        } label: {
+            Image(systemName: gameService.state.image)
         }
         .buttonStyle(.borderedProminent)
     }
 }
 
-private extension Header.GameState {
+private struct TimerView: View {
+    @ObservedObject var gameService: GameService
+    @State private var elapsedTime: TimeInterval = 0
+
+    var body: some View {
+        Text("\(elapsedTime, format: .number.precision(.integerAndFractionLength(integer: 3, fraction: 0)))")
+            .monospacedDigit()
+            .onReceive(Timer.publish(every: 0.2, on: .main, in: .default).autoconnect()) { _ in
+                elapsedTime = gameService.elapsedTime
+            }
+    }
+
+}
+
+private extension Game.State {
     var image: String {
         switch self {
         case .active:
             return "face.smiling.fill"
         case .win:
-            return "flag.checkered.fill"
+            return "flag.checkered"
         case .lose:
             return "xmark.seal.fill"
         }

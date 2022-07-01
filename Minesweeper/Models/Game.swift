@@ -37,7 +37,7 @@ struct Game {
     subscript(_ gridPoint: GridPoint) -> SpaceState {
         switch board?[gridPoint] {
         case .none:
-            return .unrevealed
+            return flagged.contains(gridPoint) ? .flagged : .unrevealed
         case .mine:
             return mineState(gridPoint)
         case .empty(let count):
